@@ -163,7 +163,7 @@ export default function Home() {
   useDrag(move);
 
   return (
-    <div className="min-h-screen bg-neutral-50 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-neutral-100 flex items-center justify-center p-4">
       <div className="w-full max-w-md space-y-6">
         <div className="flex justify-between items-center">
           <div>
@@ -182,7 +182,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="flex gap-2">
+        <div className="flex gap-2 bg-neutral-200 p-2 rounded-lg">
           <Button
             variant="outline"
             onClick={() => initializeGame()}
@@ -202,7 +202,7 @@ export default function Home() {
           </Button>
         </div>
 
-        <Card className="p-4 bg-neutral-200 aspect-square">
+        <Card className="p-4 bg-gray-50 aspect-square">
           <div className="relative w-full h-full grid grid-cols-4 gap-2">
             {cells.map((row, i) =>
               row.map((cell, j) => (
@@ -210,15 +210,23 @@ export default function Home() {
                   key={`${i}-${j}`}
                   className={`relative rounded-lg ${
                     cell
-                      ? `${getColor(cell.value)} transition-all duration-100`
-                      : "bg-neutral-300"
-                  } flex items-center justify-center`}
+                      ? `${getColor(cell.value)} transition-all duration-100 
+                      ${cell.value==4? 'bg-yellow-100' : 'text-neutral-900'}
+                      ${cell.value==8? 'bg-orange-300' : 'text-neutral-900'}
+                      ${cell.value==16? 'bg-orange-400' : 'text-neutral-900'}
+                      ${cell.value==32? 'bg-red-300' : 'text-neutral-900'}
+                      ${cell.value==64? 'bg-red-400' : 'text-neutral-900'}
+                      ${cell.value==128? 'bg-green-400' : 'text-neutral-900'}
+                      ${cell.value==256? 'bg-green-500' : 'text-neutral-900'}
+                      ${cell.value==512? 'bg-blue-400' : 'text-neutral-900'}
+                      ${cell.value==1024? 'bg-blue-500' : 'text-neutral-900'}
+                      ${cell.value==2048? 'bg-purple-500' : 'text-neutral-900'}`
+                      : "bg-gray-200"
+                  }  flex items-center justify-center`}
                 >
                   {cell && (
                     <span
-                      className={`text-2xl font-bold ${
-                        cell.value <= 4 ? "text-neutral-800" : "text-white"
-                      }`}
+                      className={`text-2xl font-bold`}
                     >
                       {cell.value}
                     </span>
